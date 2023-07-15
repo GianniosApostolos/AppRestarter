@@ -10,3 +10,8 @@ D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.csproj.CoreCompile
 D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.exe
 D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.pdb
 D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.Forms.SelectProcessForm.resources
+D:\Visual Studio Programs\AppRestarter\bin\Debug\AppRestarter.exe.manifest
+D:\Visual Studio Programs\AppRestarter\bin\Debug\AppRestarter.application
+D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.TrustInfo.xml
+D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.exe.manifest
+D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.application
