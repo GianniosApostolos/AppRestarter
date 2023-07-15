@@ -1,0 +1,12 @@
+D:\Visual Studio Programs\AppRestarter\bin\Debug\AppRestarter.exe.config
+D:\Visual Studio Programs\AppRestarter\bin\Debug\AppRestarter.exe
+D:\Visual Studio Programs\AppRestarter\bin\Debug\AppRestarter.pdb
+D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.csproj.AssemblyReference.cache
+D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.csproj.SuggestedBindingRedirects.cache
+D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.MainForm.resources
+D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.Properties.Resources.resources
+D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.csproj.GenerateResource.cache
+D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.csproj.CoreCompileInputs.cache
+D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.exe
+D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.pdb
+D:\Visual Studio Programs\AppRestarter\obj\Debug\AppRestarter.Forms.SelectProcessForm.resources
