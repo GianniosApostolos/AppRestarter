@@ -1,14 +1,8 @@
 ﻿using AppRestarter.Forms;
 using AppRestarter.Scripts;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppRestarter
@@ -32,6 +26,7 @@ namespace AppRestarter
 
         }
 
+        Process previousProcess;
         Process selectedProcess;
         private void SelectProcessForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -39,21 +34,33 @@ namespace AppRestarter
             SelectProcessForm selectProcessForm = (SelectProcessForm)sender;
 
             selectedProcess = selectProcessForm.ProcessToReturn;
-            
+
             if (selectedProcess != null)
             {
+                previousProcess = selectedProcess;
                 processLabel.Text = selectedProcess.ProcessName;
-                processLabel.ForeColor = Color.FromArgb(255, 188, 140, 255); 
+                processLabel.ForeColor = Color.FromArgb(255, 188, 140, 255);
+            }
+            else if (selectedProcess == null && previousProcess != null)
+            {
+                processLabel.Text = previousProcess.ProcessName;
+                processLabel.ForeColor = Color.FromArgb(255, 188, 140, 255);
             }
 
         }
 
         private void restartButton_Click(object sender, EventArgs e)
         {
-
-            Restarter restarter = new Restarter(selectedProcess);
-
-            restarter.RestartProcess();
+            if (selectedProcess != null)
+            {
+                Restarter restarter = new Restarter(selectedProcess);
+                restarter.RestartProcess();
+            }
+            else if (previousProcess != null)
+            {
+                Restarter restarter = new Restarter(previousProcess);
+                restarter.RestartProcess();
+            }
 
         }
 
@@ -82,14 +89,12 @@ namespace AppRestarter
         {
 
             if (MessageBox.Show("You are about to be redirected to: " +
-                                "\n\nhttps://github.com/gianniosapostolos " +
+                                "\n\nhttps://github.com/GianniosApostolos/AppRestarter/releases" +
                                 "\n\nAre you sure?",
                                 "Attempting to open external link",
-                                MessageBoxButtons.OKCancel) == DialogResult.Yes)
+                                MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-
-                Process.Start("https://github.com/gianniosapostolos");
-            
+                Process.Start("https://github.com/GianniosApostolos/AppRestarter/releases");
             }
 
         }

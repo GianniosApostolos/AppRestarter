@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,9 +59,18 @@ namespace AppRestarter.Scripts
 
                 try
                 {
-                    process.CloseMainWindow();
+                    if (!process.HasExited)
+                    {
+                        process.CloseMainWindow();
 
-                    process.WaitForExit(10);
+                        if (!process.WaitForExit(10))
+                        {
+                            process.Kill();
+
+                            process.WaitForExit();
+
+                        }
+                    }
 
                 }
                 catch (Exception e)
@@ -79,15 +86,17 @@ namespace AppRestarter.Scripts
 
         public void RestartProcess()
         {
-            
+
             if (processToRestart != null)
             {
-                // Kill all instances of the process
-                KillProcesses();
+                Task.Run(() =>
+                {
+                    // Kill all instances of the process
+                    KillProcesses();
 
-                // Restart the process
-                StartProcess();
-            
+                    // Restart the process
+                    StartProcess();
+                });
             }
 
         }
