@@ -14,8 +14,43 @@ namespace AppRestarter
             InitializeComponent();
 
             separatorPanel.BackColor = Color.FromArgb(25, 99, 182, 109);
+
+            InitializeSavedValues();
+
+
         }
 
+        string loadedProcessPath;
+        string loadedProcessName;
+        bool hasFinihsedLoadingSavedValues = false;
+        private void InitializeSavedValues() 
+        {
+            if (!String.IsNullOrWhiteSpace(Properties.Settings.Default.lastSelectedProcessPath.ToString()) &&
+                !String.IsNullOrWhiteSpace(Properties.Settings.Default.lastSelectedProcessName.ToString()))
+            {
+
+                rememberProcessCheckBox.Checked = true;
+
+                loadedProcessPath = Properties.Settings.Default.lastSelectedProcessPath.ToString();
+                loadedProcessName = Properties.Settings.Default.lastSelectedProcessName.ToString();
+
+                Console.WriteLine(loadedProcessPath);
+                Console.WriteLine(loadedProcessName);
+
+                processLabel.Text = loadedProcessName;
+                processLabel.ForeColor = Color.FromArgb(255, 188, 140, 255);
+            }
+            else 
+            {
+                rememberProcessCheckBox.Checked = false;
+                rememberProcessCheckBox.Enabled = false;
+                rememberProcessCheckBox.Visible = false;
+
+                loadedProcessPath = null;
+                loadedProcessName = null;
+            }
+            hasFinihsedLoadingSavedValues = true;
+        }
         private void selectProcessButton_Click(object sender, EventArgs e)
         {
             SelectProcessForm selectProcessForm = new SelectProcessForm();
@@ -40,6 +75,9 @@ namespace AppRestarter
                 previousProcess = selectedProcess;
                 processLabel.Text = selectedProcess.ProcessName;
                 processLabel.ForeColor = Color.FromArgb(255, 188, 140, 255);
+
+                rememberProcessCheckBox.Enabled = true;
+                rememberProcessCheckBox.Visible = true;
             }
             else if (selectedProcess == null && previousProcess != null)
             {
@@ -60,6 +98,12 @@ namespace AppRestarter
             {
                 Restarter restarter = new Restarter(previousProcess);
                 restarter.RestartProcess();
+            }
+
+            if (selectedProcess == null && previousProcess == null) 
+            {
+                Restarter restarter = new Restarter(loadedProcessPath);
+                restarter.RestartProcess(loadedProcessName,loadedProcessPath);
             }
 
         }
@@ -99,6 +143,25 @@ namespace AppRestarter
 
         }
 
+        private void rememberProcessCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (selectedProcess != null && rememberProcessCheckBox.Checked) 
+            {
+                Restarter restarter = new Restarter(selectedProcess);
+                restarter.SaveProcessPath();
+            }
+            else
+            {
+                if (hasFinihsedLoadingSavedValues) { 
+                    Properties.Settings.Default.lastSelectedProcessName = "";
+                    Properties.Settings.Default.lastSelectedProcessPath = "";
+                    Properties.Settings.Default.Save();
+                }
+            }
+
+        }
+
 
         // This method is triggered when the form is resized by the user.
         // Depending on the size of the form, it will show or hide some of the controls.
@@ -116,6 +179,7 @@ namespace AppRestarter
                     // This case occurs when the user has resized the form towards
                     // its top left corner.
                     this.titleProcessLabel.Visible = false;
+                    this.rememberProcessCheckBox.Visible = false;
                     this.processLabel.Visible = false;
                     this.githubPictureBox.Visible = false;
                     this.selectProcessButton.Visible = false;
@@ -129,6 +193,7 @@ namespace AppRestarter
                     // This case occurs when the user has resized the form towards
                     // its top but has also dragged it to the right.
                     this.titleProcessLabel.Visible = false;
+                    this.rememberProcessCheckBox.Visible = false;
                     this.processLabel.Visible = false;
                     this.githubPictureBox.Visible = false;
                     this.selectProcessButton.Visible = true;
@@ -147,6 +212,7 @@ namespace AppRestarter
                     // This case occurs when the user has resized the form towards
                     // the left side but hasn't resized it too much upwards.
                     this.titleProcessLabel.Visible = false;
+                    this.rememberProcessCheckBox.Visible = false;
                     this.processLabel.Visible = false;
                     this.githubPictureBox.Visible = true;
                     this.selectProcessButton.Visible = false;
@@ -161,6 +227,7 @@ namespace AppRestarter
                     this.restartButton.Location = new Point(255, 122);
                     this.selectProcessButton.Location = new Point(255, 35);
                     this.titleProcessLabel.Visible = true;
+                    this.rememberProcessCheckBox.Visible = true;
                     this.processLabel.Visible = true;
                     this.githubPictureBox.Visible = true;
                 }

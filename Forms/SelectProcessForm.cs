@@ -18,6 +18,8 @@ namespace AppRestarter.Forms
             listViewColumnSorter = new ListViewColumnSorter();
 
             this.processListView.ListViewItemSorter = listViewColumnSorter;
+            listViewColumnSorter.SortColumn = 1;
+            listViewColumnSorter.Order = SortOrder.Ascending;
         }
 
         private void SelectProcessForm_Load(object sender, EventArgs e)

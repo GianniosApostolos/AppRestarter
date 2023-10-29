@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.selectProcessButton = new System.Windows.Forms.Button();
             this.processLabel = new System.Windows.Forms.Label();
@@ -35,6 +36,8 @@
             this.titleProcessLabel = new System.Windows.Forms.Label();
             this.separatorPanel = new System.Windows.Forms.Panel();
             this.githubPictureBox = new System.Windows.Forms.PictureBox();
+            this.rememberProcessCheckBox = new System.Windows.Forms.CheckBox();
+            this.toolTipMainForm = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.githubPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,12 +125,35 @@
             this.githubPictureBox.TabStop = false;
             this.githubPictureBox.Click += new System.EventHandler(this.githubPictureBox_Click);
             // 
+            // rememberProcessCheckBox
+            // 
+            this.rememberProcessCheckBox.AutoSize = true;
+            this.rememberProcessCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rememberProcessCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rememberProcessCheckBox.FlatAppearance.BorderSize = 0;
+            this.rememberProcessCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.rememberProcessCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(182)))), ((int)(((byte)(109)))));
+            this.rememberProcessCheckBox.Location = new System.Drawing.Point(186, 41);
+            this.rememberProcessCheckBox.Name = "rememberProcessCheckBox";
+            this.rememberProcessCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.rememberProcessCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.rememberProcessCheckBox.TabIndex = 6;
+            this.toolTipMainForm.SetToolTip(this.rememberProcessCheckBox, "Remember last selected process for future use.\r\nThe information is retrieved afte" +
+        "r the application is restarted.\r\n");
+            this.rememberProcessCheckBox.UseVisualStyleBackColor = true;
+            this.rememberProcessCheckBox.CheckedChanged += new System.EventHandler(this.rememberProcessCheckBox_CheckedChanged);
+            // 
+            // toolTipMainForm
+            // 
+            this.toolTipMainForm.IsBalloon = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(17)))), ((int)(((byte)(23)))));
             this.ClientSize = new System.Drawing.Size(384, 196);
+            this.Controls.Add(this.rememberProcessCheckBox);
             this.Controls.Add(this.githubPictureBox);
             this.Controls.Add(this.separatorPanel);
             this.Controls.Add(this.restartButton);
@@ -156,6 +182,8 @@
         private System.Windows.Forms.Label titleProcessLabel;
         private System.Windows.Forms.Panel separatorPanel;
         private System.Windows.Forms.PictureBox githubPictureBox;
+        private System.Windows.Forms.CheckBox rememberProcessCheckBox;
+        private System.Windows.Forms.ToolTip toolTipMainForm;
     }
 }
 
