@@ -9,6 +9,7 @@ namespace AppRestarter
 {
     public partial class MainForm : Form
     {
+        KeyboardHook keyboardHook = new KeyboardHook();
         public MainForm()
         {
             InitializeComponent();
@@ -17,8 +18,12 @@ namespace AppRestarter
 
             InitializeSavedValues();
 
-
+            keyboardHook.KeyPressed += new EventHandler<KeyPressedEventArgs>(restartButton_Click);
+            
+            // register the control + End combination as hot key.
+            keyboardHook.RegisterHotKey(Enums.ModifierKeys.Control, Keys.End);
         }
+
 
         string loadedProcessPath;
         string loadedProcessName;
@@ -33,9 +38,6 @@ namespace AppRestarter
 
                 loadedProcessPath = Properties.Settings.Default.lastSelectedProcessPath.ToString();
                 loadedProcessName = Properties.Settings.Default.lastSelectedProcessName.ToString();
-
-                Console.WriteLine(loadedProcessPath);
-                Console.WriteLine(loadedProcessName);
 
                 processLabel.Text = loadedProcessName;
                 processLabel.ForeColor = Color.FromArgb(255, 188, 140, 255);
