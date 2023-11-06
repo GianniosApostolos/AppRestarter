@@ -1,6 +1,6 @@
 # AppRestarter
 
-Restarting the same app over and over again must be exhausting. This program makes life easier for you !
+Restarting the same app over and over again must be exhausting. [This program](https://github.com/GianniosApostolos/AppRestarter/releases/latest) makes life easier for you !
 You can choose which application you would like to restart and then restart it automatically with a click of a button.
 
 
