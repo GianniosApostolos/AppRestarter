@@ -87,6 +87,7 @@
             this.restartButton.Size = new System.Drawing.Size(95, 50);
             this.restartButton.TabIndex = 3;
             this.restartButton.Text = "Restart";
+            this.toolTipMainForm.SetToolTip(this.restartButton, "Hotkey: \"Left Control + End\"");
             this.restartButton.UseVisualStyleBackColor = false;
             this.restartButton.Click += new System.EventHandler(this.restartButton_Click);
             this.restartButton.MouseEnter += new System.EventHandler(this.restartButton_MouseEnter);
